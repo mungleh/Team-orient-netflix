@@ -2,7 +2,6 @@ import os
 import json
 import requests
 import pandas as pd
-import mysql.connector
 import streamlit as st
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
@@ -15,15 +14,6 @@ password = os.getenv("password")
 host = os.getenv("host")
 port = os.getenv("port")
 dbname = os.getenv("dbname")
-
-mydb = mysql.connector.connect(
-  host=host,
-  user=username,
-  password=password,
-  database=dbname
-)
-
-mycursor = mydb.cursor()
 
 connection_string = f"mysql+mysqlconnector://{username}:{password}@{host}:{port}/{dbname}"
 engine = create_engine(connection_string)
@@ -66,10 +56,6 @@ if st.button("Give me recomendations !"):
         formatted_json = json.dumps(recomendations_dict, indent=4)
 
         # put = pd.read_sql_query(f"INSERT INTO `inputs-table` (input, output) VALUES ('{option}', '[{formatted_json}]')", engine)
-
-        sql = "INSERT INTO `inputs-table` (input, output) VALUES (%s, %s)"
-        val = (f'{option}', '[{formatted_json}]')
-        mycursor.execute(sql, val)
 
         # with engine.connect() as conn:
         #     conn.execute(put)
