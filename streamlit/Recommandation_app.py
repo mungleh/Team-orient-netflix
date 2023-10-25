@@ -5,10 +5,7 @@ import streamlit as st
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 
-
 # connection
-from dotenv import load_dotenv
-
 load_dotenv()
 
 username = os.getenv("username")
