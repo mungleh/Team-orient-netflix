@@ -1,2 +1,3 @@
 /api/.env
 /streamlit/.env
+/notebook/.env
