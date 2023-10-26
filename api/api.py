@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 import pandas as pd
 import os
+import json
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
@@ -31,9 +33,6 @@ df = pd.read_sql_query("SELECT * FROM input_table", engine)
 
 @app.post("/predict")
 def get_recommendations(input_title):
-    input_movie = df[df['movie_title'] == input_title]
-    
-    features = input_movie[['actor_1_name', 'genres', 'imdb_score', 'director_name', 'duration', 'language', 'country']]
     
     tfidf = TfidfVectorizer()
     tfidf_matrix = tfidf.fit_transform(df['genres'] + " " + df['actor_1_name'] + " " + df['director_name'] + " " + df['language'] + " " + df['country'])
@@ -53,5 +52,9 @@ def get_recommendations(input_title):
     
     sim_indices = [i[0] for i in sim_scores[1:6]]  
     
-    return df['movie_title'].iloc[sim_indices]
+    output = df['movie_title'].iloc[sim_indices]
+    
+    response_data = output.tolist()
+    
+    return JSONResponse(content=response_data)
 
