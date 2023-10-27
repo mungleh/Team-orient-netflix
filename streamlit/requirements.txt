@@ -3,3 +3,4 @@ python-dotenv==1.0.0
 Requests==2.31.0
 SQLAlchemy==2.0.6
 mysql-connector-python
+protobuf==4.21.1
