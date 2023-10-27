@@ -35,7 +35,7 @@ df = pd.read_sql_query("SELECT * FROM input_table", engine)
 def get_recommendations(input_title):
     
     tfidf = TfidfVectorizer()
-    tfidf_matrix = tfidf.fit_transform(df['genres'] + " " + df['actor_1_name'] + " " + df['director_name'] + " " + df['language'] + " " + df['country'])
+    tfidf_matrix = tfidf.fit_transform(df['genres'] + " " + df['actor_1_name'] + " " + df['director_name'] + " " + df['plot_keywords'])
     
     scaler = MinMaxScaler()
     numerical_features = scaler.fit_transform(df[['imdb_score', 'duration']])
