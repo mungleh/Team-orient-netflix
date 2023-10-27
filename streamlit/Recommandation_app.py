@@ -54,7 +54,7 @@ def set_background(png_file):
     ''' % bin_str
     st.markdown(page_bg_img, unsafe_allow_html=True)
 
-set_background('assets/walle.jpg')
+set_background('walle.jpg')
 
 st.markdown(f"<h1 style='color: white;'>What film de you like ?</h1>", unsafe_allow_html=True)
 option = st.selectbox('', df)
