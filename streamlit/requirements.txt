@@ -1,5 +1,5 @@
 pandas==2.0.3
-protobuf==4.21.1
+protobuf==4.21.12
 python-dotenv==1.0.0
 Requests==2.31.0
 SQLAlchemy==2.0.6
