@@ -3,3 +3,4 @@ python-dotenv==1.0.0
 Requests==2.31.0
 SQLAlchemy==2.0.6
 mysql-connector-python==8.2.0
+streamlit_nested_layout==0.1.1
